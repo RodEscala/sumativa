@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="css/style.css">
+      <!-- bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark " id="pageContent">
+    <div class="container-fluid">
+      <a class="navbar-brand text-success" id="userLogged"> Usuario Conectado</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-info" aria-current="page" href="productos.html">Inicio</a>
+          </li>
+
+        </ul>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item ms-auto">
+            <a class="nav-link text-white d-flex justify-content-end btn" onclick="logout()">Cerrar Sesion</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido Principal: Lista de productos -->
+  <div class="container mt-2" id="pageContent"> <!-- Contenedor principal del contenido de la página -->
+    <h2 class="text-center">Productos Disponibles</h2> <!-- Título de la sección -->
+
+    <!-- Sección donde se generarán las tarjetas de produtos -->
+    <div id="productsList" class="row mt-3">
+        <!-- Las tarjetas de productos se generan dinámicamente aquí con JavaScript -->
+    </div>
+</div>
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+   <!-- Scripts -->
+   <script src="js/auth.js"></script> <!-- Script de autenticación para manejar inicio y cierre de sesión -->
+   <script src="js/marketData.js"></script> <!-- Carga la lista de productos -->
+   <script src="js/market.js"></script> <!-- Script que genera y muestra las tarjetas de productos -->
+
+   <script>
+      // Redirigir si el usuario no está autenticado
+      if (!sessionStorage.getItem('authenticatedUser')) {
+          alert("Debes iniciar sesión para acceder a esta página"); // Muestra una alerta de autenticación
+          window.location.href = "index.html"; // Redirige a la página de inicio de sesión
+      }
+
+      // Cargar la lista de productos cuando el contenido de la página está listo
+      document.addEventListener("DOMContentLoaded", function () {
+          loadProducts(); // Llama a la función `loadProducts` en `market.js` para mostrar los productos
+      });
+    </script>
+
+    <script>
+        window.onload = function() {
+          showUser();
+        };
+    </script>
+
+</body>
+</html>
